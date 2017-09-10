@@ -1,0 +1,140 @@
+@name Pancakeos
+@inputs Screen:wirelink Mem:wirelink KeyText
+@persist Markery Markerx Text:string Dclear
+@trigger KeyText
+
+
+
+
+
+
+
+
+
+
+
+if (first()) {
+    
+    
+    function clear() {
+    
+    Screen:writeCell(2041,1)
+    
+    }
+function writeline(Str:string) {
+        if(Markery< 18){
+        Screen:writeString(Str,0,Markery,999,0,0)
+        Markery++
+        Markerx = 0
+} else {
+
+    clear()
+    Markery = 0
+    Markerx = 0
+    Screen:writeString(Str,0,Markery,999,0,0)
+
+}
+    }
+function errorwrite(Str:string) {
+    
+        if(Markery< 18){
+        Screen:writeString(Str,0,Markery,500,0,0)
+        Markery++
+        Markerx = 0
+} else {
+
+    clear()
+    Markery = 0
+    Markerx = 0
+    Screen:writeString(Str,0,Markery,500,0,0)
+    Markery++
+
+}
+}
+function staticwrite(X,Y,Str:string) {
+    
+        Screen:writeString(Str,X,Y,999,0,0)
+    
+    
+    }
+function cursorwrite(Str:string) {
+    
+        Screen:writeString(">"+Str,Markerx,Markery,999,0,0)
+            
+    }
+function clearline(Y) { 
+        for(I=0,29){
+        Screen:writeString(" ",I,Y,0,999)
+        }
+    
+    }
+function number charwrite(Str:string) {
+        if(Markerx <= 29){
+        Screen:writeString(Str,Markerx,Markery,500,0,0)
+        Markerx++
+        return 1
+        
+        } else {
+
+        return 0
+
+}
+    }
+    clear()
+    writeline("Pancake Command Line, Ver 0.1")
+    cursorwrite(Text)
+    
+    
+    
+}
+
+if (KeyText != 0 & KeyText != 10 & KeyText != 127) {
+
+    Text = Text + toChar( KeyText )
+    cursorwrite(Text)
+
+
+} elseif(KeyText == 10){
+
+    R = Text:explode(" ")
+    Dclear = 1
+    if(R[1,string] == "faggot"){
+     
+        writeline("Fuck you too.")
+       
+    }
+    Text = ""
+
+} elseif(KeyText == 127) {
+    
+    Text = Text:sub(1,-2)
+    
+
+}
+if(Dclear == 0){
+    
+    clearline(Markery)
+    
+}
+
+
+
+Dclear = 0
+
+#if(Markery< 18){
+
+
+staticwrite(22,17,"x:"+Markerx+"y:"+Markery) 
+
+
+    
+    
+    
+
+
+    
+
+    
+
+
+
